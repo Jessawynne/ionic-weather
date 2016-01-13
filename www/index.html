@@ -24,18 +24,18 @@
   <body ng-app="starter">
 
     <ion-pane ng-controller="weatherCtrl as weather">
-      <ion-header-bar class="bar bar-header item-input-inset">
+      <ion-header-bar class="bar-stable item-input-inset">
         <label class="item-input-wrapper">
           <i class="icon ion-ios-search placeholder-icon"></i>
           <input type="search" placeholder="Search" ng-model="weather.searchQuery">
         </label>
-        <button class="button button-clear" ng-click="weather.search()">
-          Cancel
+        <button class="button button-royal" ng-click="weather.search()">
+          Search
         </button>
       </ion-header-bar>
       <ion-content>
         <h1>{{weather.location}}</h1>
-        <h1>{{weather.temp}}°F</h1>
+        <h1>{{weather.temp}}℉</h1>
         <img ng-src="{{weather.image}}">
       </ion-content>
     </ion-pane>

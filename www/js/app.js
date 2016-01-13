@@ -19,7 +19,8 @@ angular
     var apikey = '2a09c4ac098a3bcd';
     var url = '/api/' + apikey + '/conditions/q/';
 
-    $http.get(url + 'autoip.json').then(parseWUData);
+    $http
+      .get(url + 'autoip.json').then(parseWUData);
 
     navigator.geolocation.getCurrentPosition(function (geopos) {
       var lat = geopos.coords.latitude;
