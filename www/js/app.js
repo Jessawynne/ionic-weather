@@ -32,6 +32,12 @@ angular
 
     weather.temp = '--';
 
+    weather.search = function () {
+      $http
+        .get (url + weather.searchQuery + '.json')
+        .then(parseWUData);
+    }
+
     function parseWUData(res) {
       var data = res.data.current_observation;
 
