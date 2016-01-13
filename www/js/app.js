@@ -36,8 +36,25 @@ angular
     weather.search = function () {
       $http
         .get (url + weather.searchQuery + '.json')
-        .then(parseWUData);
-    }
+        .then(parseWUData)
+        .then(function (res) {
+            var stationIDs = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+            if (stationIDs.indexOf(res.data.current_observation.station_id) === -1) {
+              stationIDs.push(res.data.current_observation.station_id);
+              localStorage.setItem('searchHistory', JSON.stringify(stationIDs));
+            }
+        });
+
+      $http
+        .get("https://maps.googleapis.com/maps/api/geocode/json?address=" + this.searchQuery)
+        .then(function(response) {
+
+       console.log(response.data.results[0].geometry.location.lat);
+       console.log(response.data.results[0].geometry.location);
+      });
+
+    };
 
     function parseWUData(res) {
       var data = res.data.current_observation;
@@ -45,6 +62,8 @@ angular
       weather.location = data.display_location.full;
       weather.temp = parseInt(data.temp_f);
       weather.image = data.icon_url;
+
+      return res;
     }
   });
 
