@@ -28,8 +28,9 @@
         <h1 class="title">Ionic Weather App</h1>
       </ion-header-bar>
       <ion-content ng-controller="weatherCtrl as weather">
+        <h1>{{weather.location}}</h1>
         <h1>{{weather.temp}}°F</h1>
-        <div ng-model="{{weather.icon}}"></div>
+        <img ng-src="{{weather.image}}">
       </ion-content>
     </ion-pane>
   </body>
